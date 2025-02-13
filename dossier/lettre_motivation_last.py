@@ -1,15 +1,22 @@
 import streamlit as st
 import time
-from theme import toggle_theme
-from components.quiz import display_quiz  # Correction de l'import
-from presentation import display_presentation
-from floating_chat import add_floating_chat_to_app
 from PIL import Image
 import random
-from projet_gaming import display_project_concept
-from lettre_motivation_content import get_lettre_motivation_content, get_note_importante
+
+# Components imports
+from components.quiz import display_quiz
+from components.presentation import display_presentation
+from components.floating_chat import add_floating_chat_to_app
+from components.projet_gaming import display_project_concept
+from components.navigation import display_navigation
+
+# Content imports
+from content.lettre_motivation_content import get_lettre_motivation_content, get_note_importante
+
+# Styles and animations
 from styles.main import get_main_styles
 from animations.matrix import get_matrix_styles, display_data_animation
+from styles.theme import toggle_theme
 
 # Remplacer la fonction scroll_to_section par :
 def scroll_to_section(title_id):
