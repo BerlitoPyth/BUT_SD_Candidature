@@ -4,11 +4,13 @@ from PIL import Image
 import random
 
 # Components imports
-from components.quiz import display_quiz
-from components.presentation import display_presentation
-from components.floating_chat import add_floating_chat_to_app
-from components.projet_gaming import display_project_concept
-from components.navigation import display_navigation
+from components import (
+    display_quiz,
+    display_presentation,
+    add_floating_chat_to_app,
+    display_project_concept,
+    display_navigation
+)
 
 # Content imports
 from content.lettre_motivation_content import get_lettre_motivation_content, get_note_importante
@@ -18,7 +20,6 @@ from styles.main import get_main_styles
 from animations.matrix import get_matrix_styles, display_data_animation
 from styles.theme import toggle_theme
 
-# Remplacer la fonction scroll_to_section par :
 def scroll_to_section(title_id):
     js = f'''
     <script>
@@ -28,7 +29,6 @@ def scroll_to_section(title_id):
                 title.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
             }}
         }}
-        // Exécuter après un court délai pour s'assurer que le DOM est chargé
         setTimeout(scrollToTitle, 100);
     </script>
     '''
@@ -41,18 +41,6 @@ def write_text_slowly(text):
         placeholder.markdown(f"### {text[:i]}▌")
         time.sleep(0.03)
     placeholder.markdown(f"### {text}")
-
-def display_navigation():
-    """Affiche le menu de navigation dans la sidebar."""
-    options = [
-        "🏠 Accueil",
-        "👤 Présentation",
-        "🔧 Projet",
-        "✨ Quiz",
-        "📈 Parcours",
-        "✉️ Motivation"
-    ]
-    return st.radio("", options, index=0)
 
 def display_fullscreen_letter():
     """Affiche la lettre en plein écran"""
@@ -91,8 +79,8 @@ def main():
             toggle_theme()
         
         st.title("🎯 Navigation")
-        selection = display_navigation()  # Store the return value
-    
+        selection = display_navigation()
+
     # Content
     if st.session_state.get('lettre_agrandie', False):
         display_fullscreen_letter()
@@ -126,7 +114,7 @@ def main():
 
     # Footer
     st.markdown("---")
-    st.markdown("*Application interactive créé pour accompagner ma candidature au BUT Science des Données*")
+    st.markdown("*Application interactive créée pour accompagner ma candidature au BUT Science des Données*")
 
 if __name__ == "__main__":
     main()
